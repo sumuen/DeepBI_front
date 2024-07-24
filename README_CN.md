@@ -212,7 +212,7 @@ git clone http://github.com/DeepInsight-AI/DeepBI.git
     <td>不适配</td>
     <td>不适配</td>
     <td>单数据表分析相对可以，单线程表现不佳，需要充值>50</td>
-    <td>128k / 输入输出均为0.06元 32k / 0.24元 </td>
+    <td>128k / 输入输出均为0.06元 32k / 0.024元 </td>
   </tr>
   <tr>
     <td colspan="7">声明: 测试数据和问题具有局限性以及结论理解上非标准化，仅供参考。</td><td>价格/汇率以官方为准</td>
@@ -220,7 +220,7 @@ git clone http://github.com/DeepInsight-AI/DeepBI.git
 </table>
 
 ## Contact Us
-<a><img src="https://github.com/DeepInsight-AI/DeepBI/assets/151519915/c513f445-bcd6-4ddd-a141-4b69fceefba5" width="40%"/></a>
+<a><img src="https://github.com/DeepInsight-AI/DeepBI/assets/151519374/20976f5b-8d2e-4cb8-b54c-4f2e44969d52" width="40%"/></a>
 <br>
 为感谢各位支持，本地化部署完成可以联系群内DeepBI小助手，免费领取Token。
 
