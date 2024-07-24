@@ -114,6 +114,7 @@ const SecondChoice = forwardRef(({ SelectLoading, editData, closeEditData, submi
       <p className="edit-back" onClick={goBack}>
         <ArrowLeftOutlinedIcon style={{ fontSize: "18px" }} />
       </p>
+      <button onClick={editSubmit} disabled={SecondChoiceLoading} className="submit-btn">{window.W_L.submit}</button>
       <div className="select-content-item">
         <div style={{ position: "absolute", bottom: "-30px", fontSize: "12px" }}>
           <Tooltip title={window.W_L.source_tooltip}>
@@ -146,7 +147,7 @@ const SecondChoice = forwardRef(({ SelectLoading, editData, closeEditData, submi
               />
             </div>
           )}
-          <div className={!tableIsShow ? "flex-center" : ""} style={{ width: "400px", overflowY: "scroll", height: tableIsShow ? "235px" : "276px" }}>
+          <div className={!tableIsShow ? "flex-center" : ""} style={{ width: "40px", overflowY: "scroll", height: tableIsShow ? "235px" : "276px" }}>
             {tableIsShow && (
               <Table
                 dataSource={SchemaListDataItem.field_desc}
@@ -158,7 +159,6 @@ const SecondChoice = forwardRef(({ SelectLoading, editData, closeEditData, submi
             )}
           </div>
         </div>
-        <button onClick={editSubmit} disabled={SecondChoiceLoading} className="submit-btn">{window.W_L.submit}</button>
       </div>
     </div>
   );
