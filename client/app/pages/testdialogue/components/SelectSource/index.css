@@ -67,7 +67,7 @@
   transition: all 0.2s;
 }
 .select-main ul {
-  height: 120px;
+  height: 240px;
   overflow-y: scroll;
   list-style: none;
   margin: 0;
@@ -110,7 +110,7 @@
 }
 .table-columns {
   display: flex;
-  flex-direction: column; /* 改为 column，使子元素垂直排列 */
+  flex-direction: column; 
   margin-left: 20px;
   max-width: 200px;
   position: relative;
