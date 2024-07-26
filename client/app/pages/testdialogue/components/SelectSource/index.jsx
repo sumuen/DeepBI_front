@@ -455,9 +455,9 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
   const SchemaListIsShow = SchemaList && SchemaList.length > 0;
   const tableIsShow = SchemaListDataItem && SchemaListDataItem.table_name && SchemaListDataItem.field_desc.length > 0;
 
-  return (
+   return (
     !Charttable && (
-      <div className="flex-column">
+      <div className="flex-column vertical-layout">
         <div className="dislogue-caption">
           <h1>Hi !</h1>
           <span>
@@ -495,7 +495,7 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
                   </span>
                   <div>
                     <Select
-                      style={{ width: 240 }}
+                      style={{ width: 120 }}
                       showSearch
                       defaultValue={source_id}
                       className="dialogue-content-select"
@@ -559,7 +559,7 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
                   )}
                   <div
                     className={!tableIsShow ? "flex-center" : ""}
-                    style={{ width: "400px", overflowY: "scroll", height: tableIsShow ? "235px" : "276px" }}>
+                    style={{ width: "120px", overflowY: "scroll", height: tableIsShow ? "235px" : "276px" }}>
                     {tableIsShow ? (
                       <Table
                         rowSelection={{

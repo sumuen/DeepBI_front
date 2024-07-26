@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import DynamicComponent from "@/components/DynamicComponent";
 import DesktopNavbar from "./DesktopNavbar";
@@ -8,6 +8,7 @@ import "./index.less";
 
 export default function ApplicationLayout({ children }) {
   const mobileNavbarContainerRef = useRef();
+  const [isNavVisible, setIsNavVisible] = useState(true);
 
   const getMobileNavbarPopupContainer = useCallback(() => mobileNavbarContainerRef.current, []);
 
@@ -20,11 +21,13 @@ export default function ApplicationLayout({ children }) {
           </DynamicComponent>
         </div>
         <div className="application-layout-content">
-          <nav className="application-layout-top-menu" ref={mobileNavbarContainerRef}>
-            <DynamicComponent name="ApplicationMobileNavbar" getPopupContainer={getMobileNavbarPopupContainer}>
-              <MobileNavbar getPopupContainer={getMobileNavbarPopupContainer} />
-            </DynamicComponent>
-          </nav>
+          {isNavVisible && (
+            <nav className="application-layout-top-menu" ref={mobileNavbarContainerRef}>
+              <DynamicComponent name="ApplicationMobileNavbar" getPopupContainer={getMobileNavbarPopupContainer}>
+                <MobileNavbar getPopupContainer={getMobileNavbarPopupContainer} />
+              </DynamicComponent>
+            </nav>
+          )}
           {children}
         </div>
       </DynamicComponent>

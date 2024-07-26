@@ -9,14 +9,14 @@ import Link from "@/components/Link";
 import { Auth, currentUser } from "@/services/auth";
 import settingsMenu from "@/services/settingsMenu";
 import logoUrl from "@/assets/images/icon_small.png";
-
+import { useScrollHide } from './useScrollHide';
 import "./MobileNavbar.less";
 
 export default function MobileNavbar({ getPopupContainer }) {
   const firstSettingsTab = first(settingsMenu.getAvailableItems());
-
+  const isVisible = useScrollHide('.dialogue-content-all');
   return (
-    <div className="mobile-navbar">
+    <div className={`mobile-navbar ${isVisible ? '' : 'hidden'}`}>
       <div className="mobile-navbar-logo">
         <Link href="./">
           <img src={logoUrl} alt="DeepBI" />
