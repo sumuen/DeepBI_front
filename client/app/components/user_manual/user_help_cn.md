@@ -1,7 +1,7 @@
 # DeepBI 使用说明
 
 
-## 1，配置 API KEY2wocaonima
+## 1，配置 API KEY2
 
 - [设置]-[API KEY]
 

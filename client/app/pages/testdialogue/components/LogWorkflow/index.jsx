@@ -15,7 +15,7 @@ const LogWorkflow = props => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
   const [sourceList, setSourceList] = React.useState([]);
   // workTitle
-  const [workTitle, setWorkTitle] = React.useState("Show work");
+  const [workTitle, setWorkTitle] = React.useState("生成中");
   const logTerminal = React.useRef(null);
   React.useEffect(() => {
     if (logData && logData.length > 0) {
@@ -39,11 +39,11 @@ const LogWorkflow = props => {
     if (logData && logData.length === 0) {
       return;
     }
-    if (workTitle === "Show work") {
-      setWorkTitle("Hide work");
+    if (workTitle === "生成中") {
+      setWorkTitle("隐藏");
       logTerminal.current.style.height = "170px";
     } else {
-      setWorkTitle("Show work");
+      setWorkTitle("生成中");
       logTerminal.current.style.height = "0px";
     }
   };
