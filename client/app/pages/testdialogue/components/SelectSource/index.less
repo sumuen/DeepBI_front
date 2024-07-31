@@ -11,12 +11,12 @@
 }
 .select-content {
     position: relative;
-    max-width: 90vw;
+    max-width: 80vw;
     margin: auto;
-    height: auto;
+    max-height: 80vh;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     z-index: 9;
     background-color: rgb(255, 255, 255);
     color: rgba(0, 0, 0, 0.87);
@@ -30,14 +30,15 @@
 .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
     border-radius: 20px !important;
     height: 33px !important;
-    width: 120px !important;
+    width: 50vw !important;
     border-color: #C4C4C4 !important;
 }
 
 .select-content-item {
     display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: baseline; 
+    flex-direction: column;
+    margin-bottom: 2vh;
     position: relative;
 
     .select-content-item-input {
@@ -51,14 +52,15 @@
         overflow-x: scroll;
 
         img {
-            margin-right: 5px;
-            max-width: 100px;
+            margin-right: 1vw;
+            max-width: 4vw;
         }
     }
 
     .select-content-item-span {
         white-space: nowrap;
-        margin-right: 20px;
+        margin-right: 2vw;
+        width: 14vw;
         font-size: 13px;
         font-weight: bold;
         color: rgb(80 80 80 / 87%);
@@ -66,15 +68,15 @@
 }
 
 .select-main {
-    width: 120px;
+    width: 50vw;
     border: 1px solid #c4c4c4;
     font-size: 12px;
     border-radius: 15px;
-    margin-top: 15px;
+    margin-top: 1vh;
     transition: all 0.2s;
 
     ul {
-        height: 240px;
+        height: 20vh;
         overflow-y: scroll;
         list-style: none;
         margin: 0;
@@ -117,7 +119,7 @@
 .submit-btn {
     position: absolute;
     right: 0;
-    bottom: -30px;
+    bottom: -5vh;
     font-weight: bold;
     color: rgb(25, 118, 210);
     background: transparent;
@@ -125,9 +127,10 @@
 }
 
 .table-columns {
-    margin-left: 20px;
+    margin-top: 1vh;
+    margin-left: 2vw;
     position: relative;
-    max-width: 100px;
+    max-width: 70vw;
     border: 1px solid #ccc;
     border-radius: 15px;
     padding: 6px;
@@ -142,7 +145,7 @@
         >span {
             font-weight: bold;
             width: 39%;
-            max-width: 100px;
+            max-width: 50vw;
             overflow: hidden;
             margin-right: 10px;
             text-overflow: ellipsis;
@@ -181,7 +184,7 @@
     transform: translate(-50%,-50%);
     text-align: center;
     >p{
-    margin-top: 10px;
+    margin-top: 1vh;
     }
 }
 .vertical-layout {

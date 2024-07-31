@@ -124,7 +124,7 @@ const SecondChoice = forwardRef(({ SelectLoading, editData, closeEditData, submi
         </div>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "baseline" }}>
           <div className="select-main" style={{ margin: "0" }}>
-            <ul className={!SchemaListIsShow ? "flex-center" : ""} style={{ height: "288px" }}>
+            <ul className={!SchemaListIsShow ? "flex-center" : ""} style={{ height: "50vh" }}>
               {SchemaListIsShow && SchemaList.map((item, index) => (
                 <li key={index}>
                   <span onClick={() => clickSchemaItem(item)} style={{ color: item.table_name === SchemaListDataItem.table_name ? "#2196F3" : "#333", textAlign: "center", display: "block" }}>{source_item.type === "csv" ? item.table_comment : item.table_name}</span>
@@ -147,7 +147,7 @@ const SecondChoice = forwardRef(({ SelectLoading, editData, closeEditData, submi
               />
             </div>
           )}
-          <div className={!tableIsShow ? "flex-center" : ""} style={{ width: "40px", overflowY: "scroll", height: tableIsShow ? "235px" : "276px" }}>
+          <div className={!tableIsShow ? "flex-center" : ""} style={{ width: "40vw", overflowY: "scroll", height: tableIsShow ? "50vh" : "60vh" }}>
             {tableIsShow && (
               <Table
                 dataSource={SchemaListDataItem.field_desc}

@@ -480,7 +480,7 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
                 source_item={source_item}></SecondChoice>
             ) : (
               <div className="select-content-item">
-                <div style={{ position: "absolute", bottom: "-30px", fontSize: "12px" }}>
+                <div style={{ position: "absolute", bottom: "-4.5vh", fontSize: "12px" }}>
                   <Tooltip title={window.W_L.source_tooltip}>
                     <InfoCircleOutlinedIcon style={{ marginRight: "3px" }} />
                   </Tooltip>
@@ -490,7 +490,7 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
                   <span className="select-content-item-span">
                     {window.W_L.data_source}
                     <Tooltip title={window.W_L.source_tooltip} placement="bottom">
-                      <QuestionCircleOutlinedIcon style={{ marginLeft: "5px" }} />
+                      <QuestionCircleOutlinedIcon style={{ marginLeft: "1vw" }} />
                     </Tooltip>
                   </span>
                   <div>
@@ -559,7 +559,7 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
                   )}
                   <div
                     className={!tableIsShow ? "flex-center" : ""}
-                    style={{ width: "120px", overflowY: "scroll", height: tableIsShow ? "235px" : "276px" }}>
+                    style={{ width: "65vw", overflowY: "scroll", height: tableIsShow ? "27vh" : "45vh" }}>
                     {tableIsShow ? (
                       <Table
                         rowSelection={{

@@ -1,7 +1,7 @@
 # DeepBI 使用说明
 
 
-## 1，配置 API KEY2
+## 1，配置 API KEY
 
 - [设置]-[API KEY]
 

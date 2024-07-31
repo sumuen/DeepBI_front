@@ -16,12 +16,14 @@ export default function MobileNavbar({ getPopupContainer }) {
   const firstSettingsTab = first(settingsMenu.getAvailableItems());
   const isVisible = useScrollHide('.dialogue-content-all');
   return (
-    <div className={`mobile-navbar ${isVisible ? '' : 'hidden'}`}>
+    <div className={`mobile-navbar`}>
+    {/*  <div className={`mobile-navbar ${isVisible ? '' : 'hidden'}`}> */}
       <div className="mobile-navbar-logo">
         <Link href="./">
           <img src={logoUrl} alt="DeepBI" />
         </Link>
       </div>
+      <div className="mobile-navbar-name">ChatBI</div>
       <div>
         <Dropdown
           overlayStyle={{ minWidth: 200 }}
