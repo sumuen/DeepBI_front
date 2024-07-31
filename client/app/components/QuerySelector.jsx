@@ -154,7 +154,7 @@ export default function QuerySelector(props) {
           suffix={spinIcon}
         />
       )}
-      <div className="scrollbox" style={{ maxHeight: "50vh", marginTop: 15 }}>
+      <div className="scrollbox" style={{ maxHeight: "35vh", marginTop: 15 }}>
         {searchResults && renderResults()}
       </div>
     </span>

@@ -134,7 +134,7 @@ function SelectItemsDialog({
         )}
       </div>
 
-      <div className="d-flex align-items-stretch" style={{ minHeight: "30vh", maxHeight: "50vh" }}>
+      <div className="d-flex align-items-stretch" style={{ minHeight: "30vh", maxHeight: "35vh" }}>
         <div className="flex-fill scrollbox">
           {isLoading && <LoadingState className="" />}
           {!isLoading && !hasResults && (
