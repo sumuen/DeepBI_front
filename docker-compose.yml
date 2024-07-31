@@ -23,7 +23,7 @@ services:
       - postgres
       - redis
     ports:
-      - "8338:8338"
+      - "38317:8338"
     environment:
       <<: *deepbi-environment
       PYTHONUNBUFFERED: 0
@@ -33,7 +33,7 @@ services:
     depends_on:
       - server
     ports:
-      - "8340:8340"
+      - "38319:8340"
     environment:
       <<: *deepbi-environment
   server_socket:
@@ -42,7 +42,7 @@ services:
     depends_on:
       - server
     ports:
-      - "8339:8339"
+      - "38318:8339"
     environment:
       <<: *deepbi-environment
   scheduler:
