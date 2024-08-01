@@ -44,17 +44,17 @@ done
 # shellcheck disable=SC2162
 echo "如果开放外部访问，需要调整防火墙允许访问"
 # shellcheck disable=SC2162
-read -p "我们会使用服务端口 8338 8339 8340,确保它们没有使用？(Y/N): " confirm
+read -p "我们会使用服务端口 38317 38318 38319,确保它们没有使用？(Y/N): " confirm
 if [[ $confirm == "N" || $confirm == "n" ]]; then
     exit 1
 fi
 # get web port
 # shellcheck disable=SC2162
-web_port=8338
+web_port=38317
 # get socket port
 # shellcheck disable=SC2162
-socket_port=8339
-ai_web_port=8340
+socket_port=38318
+ai_web_port=38319
 
 # replace front file ip
 echo "Rename files "
