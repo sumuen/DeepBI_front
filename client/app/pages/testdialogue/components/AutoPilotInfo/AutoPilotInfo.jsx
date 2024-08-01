@@ -9,7 +9,7 @@ import { dialogueStorage } from "../Dialogue/method/dialogueStorage";
 import InfoCircleOutlinedIcon from "@ant-design/icons/InfoCircleOutlined";
 import toast from "react-hot-toast";
 import "./index.css";
-
+const { getAutopilotStorage}=dialogueStorage();
 const { TextArea } = Input;
 const AutoPilotInfo =({databases_type})=>{
 const [btn_disabled, setBtn_disabled] = useState(false);
@@ -71,7 +71,6 @@ const CreateAutoPilot = () => {
           }
     }
 }
-const { getAutopilotStorage}=dialogueStorage();
 return (
     <div style={{width:"100%"}}>
         <Descriptions  

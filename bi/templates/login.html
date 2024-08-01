@@ -57,6 +57,7 @@
     {% if not hide_forgot_password %}
       <div class="m-t-25">
         <a href="{{ url_for("bi.forgot_password", org_slug=org_slug) }}">{{ lang['W_L']['forget_password'] }}</a>
+        <a href="{{ url_for("bi.guest_login", org_slug=org_slug) }}">{{ lang['W_L']['guest_login'] }}</a>
       </div>
     {% endif %}
     {% endif %}

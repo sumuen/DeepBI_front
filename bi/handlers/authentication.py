@@ -320,11 +320,37 @@ def login(org_slug=None):
         show_ldap_login=settings.LDAP_LOGIN_ENABLED,
         lang=lang,
     )
+class GuestAccount:
+    def __init__(self):
+        self.email = "guest@example.com"
+        self.password = "8e83a1a991763f0d2ba2d255cbf674a3"
+
+
+@routes.route(org_scoped_rule("/guest_login"), methods=["GET"])
+def guest_login():
+    if current_user.is_authenticated:
+        return redirect(url_for("bi.index"))
+
+    guest_account = GuestAccount()
+    email = guest_account.email
+    password = guest_account.password
+
+    try:
+        org = current_org._get_current_object()
+        user = models.User.get_by_email_and_org(email, org)
+        if user and not user.is_disabled and user.verify_password(password):
+            login_user(user)
+            return redirect(url_for("bi.index"))
+        else:
+            flash("Guest login failed.")
+            return redirect(url_for("login"))
+    except NoResultFound:
+        flash("Guest login failed.")
+        return redirect(url_for("login"))
 
 @routes.route(org_scoped_rule("/pretty_dashboard/<page>"))
 def test(page):
     return render_template(str(page) + ".html")
-
 
 @routes.route(org_scoped_rule("/logout"))
 def logout(org_slug=None):

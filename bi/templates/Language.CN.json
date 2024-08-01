@@ -7,6 +7,7 @@
     "remember_login": "下次自动登录",
     "submit": "确认登录",
     "forget_password": "忘记密码",
+    "guest_login": "游客登陆",
     "forget_password_email_tip": "如果用户设置了电子邮箱，重置密码邮件将会立即发送至该邮箱",
     "input_email": "请输入你的电子邮箱",
     "reset_password": "重置密码",

@@ -52,6 +52,7 @@ const Dialogue = (props) => {
     new_logData.current = state.logData;
   }
 }, [state.logData])
+
   useEffect(() => {
     getDialogueDashboardStorage();
     openSocket();

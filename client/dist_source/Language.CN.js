@@ -3,6 +3,7 @@ window.W_L = {
     'gg_login': '使用 Google 账号登录',
     'email': "邮箱",
     'password': '密码',
+    'guest_login': '游客登陆',
     'remember_login': '下次自动登录',
     'submit': '提交',
     'forget_password': "忘记密码",
