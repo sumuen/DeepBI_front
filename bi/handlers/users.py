@@ -236,6 +236,8 @@ class UserResource(BaseResource):
         params = project(
             req, ("email", "name", "password", "old_password", "group_ids")
         )
+        if user.id == 2 and (("name" in params and params["name"] != "guest") or ("email" in params and params["email"] != "guest@example.com")):
+            abort(403, message="Cannot modify name or email for this user.")
 
         if "password" in params and "old_password" not in params:
             abort(403, message="Must provide current password to update password.")
@@ -263,8 +265,6 @@ class UserResource(BaseResource):
                 params.pop("group_ids")
 
         if "email" in params:
-            if user.name == "guest":
-                abort(403, message="Cannot modify name or email for guest user.")
             require_allowed_email(params["email"])
 
         email_address_changed = "email" in params and params["email"] != user.email
