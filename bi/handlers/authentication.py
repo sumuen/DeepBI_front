@@ -343,10 +343,10 @@ def guest_login():
             return redirect(url_for("bi.index"))
         else:
             flash("Guest login failed.")
-            return redirect(url_for("login"))
+            return redirect(url_for("bi.login"))
     except NoResultFound:
         flash("Guest login failed.")
-        return redirect(url_for("login"))
+        return redirect(url_for("bi.login"))
 
 @routes.route(org_scoped_rule("/pretty_dashboard/<page>"))
 def test(page):
