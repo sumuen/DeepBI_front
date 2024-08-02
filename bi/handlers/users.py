@@ -236,6 +236,8 @@ class UserResource(BaseResource):
         params = project(
             req, ("email", "name", "password", "old_password", "group_ids")
         )
+        if user.name == "guest":
+        abort(403, message="Cannot modify name or email for guest user.")
 
         if "password" in params and "old_password" not in params:
             abort(403, message="Must provide current password to update password.")
