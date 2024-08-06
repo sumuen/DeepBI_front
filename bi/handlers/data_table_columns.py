@@ -8,7 +8,7 @@ from bi.utils import json_dumps
 
 
 class QueryDataTableColumns(BaseResource):
-    @require_admin
+    @require_permission("list_data_sources")
     def get(self, data_source_id, table_name):
         try:
             result = models.DataTableColumns.table_info(data_source_id, table_name)
