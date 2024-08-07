@@ -8,28 +8,69 @@ export const dialogueStorage = () => {
         const minutes = String(now.getMinutes()).padStart(2, '0');
         return `${year}-${month}-${day} ${hours}:${minutes}`;
     };
-
-    const defaultDialogue = [{
-        "table_name": {
-            "tableName": [
-                { "name": "order_details.csv" },
-                { "name": "order_list.csv" },
-                { "name": "sales_target.csv" }
-            ]
-        },
-        "Charttable_id": 0,
-        "label": "csv数据源",
-        "id": 0,
-        "type": "csv",
-        "title": "新对话1",
-        "uuid": Date.now(),
-        "messages": [{
-            "content": "这是一个示例数据源，请在下方输入文字进行聊天，用户选择的数据包含三个表格：'order_details.csv'，包含订单详情；'order_list.csv'，包括订单列表；以及'sales_target.csv'，包含销售目标。",
-            "sender": "bot",
-            "Cardloading": false,
-            "time": getCurrentTimestamp()
+    const dialogues = {
+        sale: [{
+            "table_name": {
+                "tableName": [
+                    { "name": "order_details.csv" },
+                    { "name": "order_list.csv" },
+                    { "name": "sales_target.csv" }
+                ]
+            },
+            "Charttable_id": 0,
+            "label": "csv数据源",
+            "id": 0,
+            "type": "csv",
+            "title": "新对话1",
+            "uuid": Date.now(),
+            "messages": [{
+                "content": "这是一个示例销售数据源，请在下方输入文字进行聊天，用户选择的数据包含三个表格：'order_details.csv'，包含订单详情；'order_list.csv'，包括订单列表；以及'sales_target.csv'，包含销售目标。",
+                "sender": "bot",
+                "Cardloading": false,
+                "time": getCurrentTimestamp()
+            }]
+        }],
+        finance: [{
+            "table_name": {
+                "tableName": [
+                    { "name": "order_details.csv" },
+                    { "name": "order_list.csv" },
+                    { "name": "sales_target.csv" }
+                ]
+            },
+            "Charttable_id": 0,
+            "label": "csv数据源",
+            "id": 0,
+            "type": "csv",
+            "title": "新对话1",
+            "uuid": Date.now(),
+            "messages": [{
+                "content": "这是一个示例金融数据源，请在下方输入文字进行聊天，用户选择的数据包含三个表格：'order_details.csv'，包含订单详情；'order_list.csv'，包括订单列表；以及'sales_target.csv'，包含销售目标。",
+                "sender": "bot",
+                "Cardloading": false,
+                "time": getCurrentTimestamp()
+            }]
+        }],
+        loan: [{
+            "table_name": {
+                "tableName": [
+                    { "name": "personal_loans_example.csv" }
+                ]
+            },
+            "Charttable_id": 0,
+            "label": "csv数据源",
+            "id": 0,
+            "type": "csv",
+            "title": "新对话1",
+            "uuid": Date.now(),
+            "messages": [{
+                "content": "这是一个示例个贷数据源，请在下方输入文字进行聊天，用户选择的数据包含三个表格：'order_details.csv'，包含订单详情；'order_list.csv'，包括订单列表；以及'sales_target.csv'，包含销售目标。",
+                "sender": "bot",
+                "Cardloading": false,
+                "time": getCurrentTimestamp()
+            }]
         }]
-    }];
+    };
 
     const addAutopilotStorage = (dialogue) => {
         sessionStorage.setItem("Chart_Dialogue_Autopilot", JSON.stringify(dialogue));
@@ -49,8 +90,8 @@ export const dialogueStorage = () => {
 
     const addChatList = (dialogue, type) => {
         if (dialogue.length <= 0) {
-            sessionStorage.setItem("Chart_Dialogue", JSON.stringify(defaultDialogue));
-            document.dispatchEvent(new CustomEvent('dialogueUpdated', { detail: defaultDialogue }));
+            sessionStorage.setItem("Chart_Dialogue", JSON.stringify(dialogues.sale));
+            document.dispatchEvent(new CustomEvent('dialogueUpdated', { detail: dialogues.sale }));
             return;
         }
         let Chart_Dialogue = [];
@@ -68,6 +109,13 @@ export const dialogueStorage = () => {
         }
     };
 
+    const setGuestDialogue = (type) => {
+        const selectedDialogue = dialogues[type] || dialogues.sale;
+        sessionStorage.setItem("Chart_Dialogue", JSON.stringify(selectedDialogue));
+        document.dispatchEvent(new CustomEvent('dialogueUpdated', { detail: selectedDialogue }));
+        window.location.reload();
+        return;
+    };
     const addDashboard = (dialogue) => {
         sessionStorage.setItem("Chart_Dashboard", JSON.stringify(dialogue));
     };
@@ -113,6 +161,7 @@ export const dialogueStorage = () => {
         getDialogueStorage,
         addChatList,
         getAllStorage,
-        setDialogueStorageDashboardId
+        setDialogueStorageDashboardId,
+        setGuestDialogue
     };
 };

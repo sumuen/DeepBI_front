@@ -597,6 +597,7 @@ window.W_L = {
     'reset_dialogue_confirm': '确定新建对话而重置当前对话吗?',
     'new_dialogue': '新对话',
     'chat_start': '请选择您的数据源和表以开始数据分析，或者',
+    'guest_chat_start': '你目前作为游客登录，您可以使用示例的三种数据源，或者',
     'report_start': '请选择您的数据源和表以开始报表生成，或者',
     'AutoPilot_start': '请选择您的数据源和表以开始自动数据分析，或者',
 

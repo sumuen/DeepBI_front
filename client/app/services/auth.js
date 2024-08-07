@@ -32,6 +32,10 @@ export const currentUser = {
   set isAdmin(isAdmin) {
     this._isAdmin = isAdmin;
   },
+  
+  isGuest() {
+    return this.name === "guest";
+  },
 };
 
 export const clientConfig = {};

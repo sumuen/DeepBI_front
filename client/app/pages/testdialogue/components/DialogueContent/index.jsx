@@ -35,15 +35,15 @@ const DialogueContent = forwardRef(({
     selectSourceRef.current.editTableData(data);
   };
 
-  // 自动刷新页面的useEffect
-  useEffect(() => {
-    if (!sessionStorage.getItem('reloaded')) {
-      sessionStorage.setItem('reloaded', 'true');
-      setTimeout(() => {
-        window.location.reload();
-      }, 1); 
-    }
-  }, []);
+  // // 自动刷新页面的useEffect
+  // useEffect(() => {
+  //   if (!sessionStorage.getItem('reloaded')) {
+  //     sessionStorage.setItem('reloaded', 'true');
+  //     setTimeout(() => {
+  //       window.location.reload();
+  //     }, 1); 
+  //   }
+  // }, []);
 
   useImperativeHandle(ref, () => ({
     sourceEdit,

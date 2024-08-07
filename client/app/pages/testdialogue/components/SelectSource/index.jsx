@@ -2,6 +2,7 @@ import React, { useEffect, useState, forwardRef, useImperativeHandle } from "rea
 import Select from "antd/lib/select";
 import Input from "antd/lib/input";
 import Table from "antd/lib/table";
+import Button from "antd/lib/button";
 import { axios } from "@/services/axios";
 import Spin from "antd/lib/spin";
 import Checkbox from "antd/lib/checkbox";
@@ -11,6 +12,7 @@ import Progress from "antd/lib/progress";
 // import mysql from "@/assets/images/db-logos/mysql.png";
 // import excel from "@/assets/images/db-logos/excel.png";
 // import starrocks from "@/assets/images/db-logos/starrocks.png";
+import { currentUser } from "@/services/auth";
 import InboxOutlinedIcon from "@ant-design/icons/InboxOutlined";
 import QuestionCircleOutlinedIcon from "@ant-design/icons/QuestionCircleOutlined";
 import InfoCircleOutlinedIcon from "@ant-design/icons/InfoCircleOutlined";
@@ -20,6 +22,8 @@ import SecondChoice from "./SecondChoice";
 import { IMG_ROOT } from "@/services/data-source";
 import "./index.less";
 import { T } from "antd/lib/upload/utils";
+import { dialogueStorage } from "../../components/Dialogue/method/dialogueStorage";
+const {setGuestDialogue} = dialogueStorage()
 const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChange, onSuccess, percent }, ref) => {
   const [options, setOptions] = useState([]);
   const [source_item, setSourceItem] = useState({ type: "mysql" });
@@ -454,20 +458,26 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
   }));
   const SchemaListIsShow = SchemaList && SchemaList.length > 0;
   const tableIsShow = SchemaListDataItem && SchemaListDataItem.table_name && SchemaListDataItem.field_desc.length > 0;
-
-   return (
+  return (
     !Charttable && (
       <div className="flex-column vertical-layout">
         <div className="dislogue-caption">
-          <h1>Hi !</h1>
+          <h1>您好！</h1>
           <span>
             {chat_type === "chat"
-              ? window.W_L.chat_start
+              ? (currentUser.isGuest() ? window.W_L.guest_chat_start : window.W_L.chat_start)
               : chat_type === "autopilot"
               ? window.W_L.AutoPilot_start
               : window.W_L.report_start}
             <Link href="/data_sources">{window.W_L.add_datasource}</Link>
           </span>
+    {currentUser.isGuest() && (
+      <>
+        <Button type="primary" onClick={() => setGuestDialogue('sale')}>销售</Button>
+        <Button type="primary" onClick={() => setGuestDialogue('finance')}>财务</Button>
+        <Button type="primary" onClick={() => setGuestDialogue('loan')}>个贷</Button>
+      </>
+        )}
         </div>
         <div className="select-content">
           <Spin spinning={SelectLoading} className={!submitting ? "" : "dislogue-spin"}>
@@ -559,7 +569,7 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
                   )}
                   <div
                     className={!tableIsShow ? "flex-center" : ""}
-                    style={{ width: "65vw", overflowY: "scroll", height: tableIsShow ? "27vh" : "45vh" }}>
+                    style={{ width: "65vw", overflowY: "scroll", height: tableIsShow ? "27vh" : "30vh" }}>
                     {tableIsShow ? (
                       <Table
                         rowSelection={{

@@ -25,6 +25,7 @@ _build
 .vscode
 .env
 user_upload_files/*
+!user_upload_files/personal_loans_example.csv
 node_modules
 .tmp
 .sass-cache
