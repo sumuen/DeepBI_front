@@ -33,7 +33,9 @@ jobs:
       run: yarn build
 
     - name: Add build files
-      run: git add client/dist
+      run: |
+        sed -i '/client\/dist/d' .gitignore
+        git add client/dist
 
     - name: Commit changes
       run: |
