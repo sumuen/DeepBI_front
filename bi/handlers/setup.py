@@ -1,6 +1,6 @@
-from flask import g, redirect, render_template, request, url_for
-
-from flask_login import login_user
+from flask import g, redirect, render_template, request, url_for, jsonify
+from flask_login import login_user,current_user
+from bi.permissions import require_admin
 from bi import settings
 from bi.authentication.org_resolving import current_org
 from bi.handlers.base import routes
@@ -52,6 +52,40 @@ def create_org(org_name, user_name, email, password):
 
     return default_org, user
 
+def initialize_csv_files(user, org):
+    csv_file = {
+        'order_detail': 'order_details.csv',
+        'order_list': 'order_list.csv',
+        'sales_target': 'sales_target.csv',
+        'personal_loans_example': 'personal_loans_example.csv',
+    }
+    user_id = user.id
+    org_id = org.id
+    added_files = []
+    for key, new_filename in csv_file.items():
+        # 检查是否已存在相同的记录
+        existing_file = DataSourceFile.query.filter_by(
+            user_id=user_id,
+            org_id=org_id,
+            source_name=key
+        ).first()
+
+        if not existing_file:
+            # 如果不存在，则添加新记录
+            result = DataSourceFile(
+                user_id=user_id,
+                org_id=org_id,
+                source_name=key,
+                file_name=new_filename,
+                is_use=True,
+                file_type="CSV",
+            )
+            db.session.add(result)
+            added_files.append(new_filename)
+    db.session.commit()
+    return added_files
+
+
 
 @routes.route("/setup", methods=["GET", "POST"])
 def setup():
@@ -69,27 +103,21 @@ def setup():
 
         g.org = default_org
         login_user(user)
-        #  init user test csv file.
-        csv_file = {
-            'order_detail': 'order_details.csv',
-            'order_list': 'order_list.csv',
-            'sales_target': 'sales_target.csv'
-        }
-        user_id = user.id
-        org_id = default_org.id
-        for key in csv_file.keys():
-            new_filename = csv_file[key]
-            result = DataSourceFile(
-                user_id=user_id,
-                org_id=org_id,
-                source_name=key,
-                file_name=new_filename,
-                is_use=True,
-                file_type="CSV",
-            )
-            db.session.add(result)
-        db.session.commit()
+        initialize_csv_files(user, default_org)
         #  init over
         return redirect(url_for("bi.index", org_slug=None))
 
     return render_template("setup.html", form=form, lang=lang)
+
+
+@routes.route('/initcsv', methods=['GET'])
+@require_admin
+def init_csv():
+    user = current_user
+    org = Organization.query.filter_by(id=user.org_id).first()
+    added_files = initialize_csv_files(user, org)
+
+    if added_files:
+        return jsonify({"message": "CSV files initialized", "files": added_files})
+    else:
+        return jsonify({"message": "No new CSV files were added"})

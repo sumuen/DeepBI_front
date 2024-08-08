@@ -1,8 +1,8 @@
 name: webpack-build CI
 
 on:
-  push:
-    branches: [ client ]
+  # push:
+  #   branches: [ client ]
   pull_request:
     branches: [ client ]
 
@@ -22,9 +22,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-
-    - name: Git pull
-      run: git pull
 
     - name: Install dependencies
       run: yarn
