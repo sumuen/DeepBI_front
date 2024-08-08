@@ -16,7 +16,6 @@ paper/
 coverage
 .coverage
 coverage.xml
-client/dist
 .DS_Store
 .#*
 \#*#

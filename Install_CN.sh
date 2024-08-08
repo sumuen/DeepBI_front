@@ -56,10 +56,7 @@ web_port=38317
 socket_port=38318
 ai_web_port=38319
 
-# replace front file ip
-echo "Rename files "
-rm -rf ./client/dist
-cp -R ./client/dist_source ./client/dist
+
 echo "Replace ip port"
 os_name=$(uname)
 if [[ "$os_name" == "Darwin" ]]; then
