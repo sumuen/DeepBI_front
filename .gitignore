@@ -29,8 +29,7 @@ node_modules
 .tmp
 .sass-cache
 npm-debug.log
-
-
+/client/dist
 client/cypress/screenshots
 client/cypress/videos
 supervisord.conf
