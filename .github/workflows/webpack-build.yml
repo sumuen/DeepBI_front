@@ -24,6 +24,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Git pull
+      run: git pull
+
     - name: Install dependencies
       run: yarn
 
