@@ -2,9 +2,9 @@ name: webpack-build CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ client ]
   pull_request:
-    branches: [ main ]
+    branches: [ client ]
 
 jobs:
   build:
