@@ -21,7 +21,7 @@ function optionalRequire(module, defaultReturn = undefined) {
     if (e && e.code === "MODULE_NOT_FOUND") {
       // Module was not found, return default value if any
       return defaultReturn;
-    }require
+    } require
     throw e;
   }
   return require(module);
@@ -108,8 +108,8 @@ const config = {
       staticPath,
       baseHref,
       title: htmlTitle,
-      web_language_js:web_language_js,
-      cdn_domain:cdn_domain
+      web_language_js: web_language_js,
+      cdn_domain: cdn_domain
     }),
     new HtmlWebpackPlugin({
       template: "./client/app/multi_org.html",
@@ -117,10 +117,10 @@ const config = {
       excludeChunks: ["server"]
     }),
     isProduction &&
-      new MiniCssExtractPlugin({
-        // filename: "[name].[chunkhash].css"
-        filename: "[name].css"
-      }),
+    new MiniCssExtractPlugin({
+      // filename: "[name].[chunkhash].css"
+      filename: "[name].css"
+    }),
     new ManifestPlugin({
       fileName: "asset-manifest.json",
       publicPath: ""
@@ -134,6 +134,7 @@ const config = {
       { from: "client/app/echarts-main.js" },
       { from: "client/app/jquery.js" },
       { from: "client/app/llm.json" },
+      { from: "client/app/guestDialogue.json" },
       { from: "client/app/assets/css/*.css", to: "styles/", flatten: true },
       { from: "client/app/assets/fonts", to: "fonts/" },
       { from: "client/app/assets/static", to: "prettify" }

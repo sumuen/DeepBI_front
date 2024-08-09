@@ -9,19 +9,19 @@ import Link from "@/components/Link";
 import { Auth, currentUser } from "@/services/auth";
 import settingsMenu from "@/services/settingsMenu";
 import logoUrl from "@/assets/images/icon_small.png";
-import { useScrollHide } from './useScrollHide';
+import { useScrollHide } from "./useScrollHide";
 import "./MobileNavbar.less";
 
 export default function MobileNavbar({ getPopupContainer }) {
   const firstSettingsTab = first(settingsMenu.getAvailableItems());
-  const isVisible = useScrollHide('.dialogue-content-all');
+  const isVisible = useScrollHide(".dialogue-content-all");
 
   const handleLogoClick = () => {
     window.location.reload();
   };
 
   return (
-    <div className={`mobile-navbar ${isVisible ? '' : 'hidden'}`}>
+    <div className={`mobile-navbar`}>
       <div className="mobile-navbar-logo">
         <Link href="./">
           <img src={logoUrl} alt="DeepBI" onClick={handleLogoClick} />
@@ -41,24 +41,25 @@ export default function MobileNavbar({ getPopupContainer }) {
               <Menu.Item key="dialogue-list">
                 <Link href="dialogue-list">{window.W_L.history_dialogue}</Link>
               </Menu.Item>
-              <Menu.Item key="report-route">
+              <Menu.Item key="report-route" style={{ display: currentUser.isGuest() ? "none" : "block" }}>
                 <Link href="report-route">{window.W_L.report_generation}</Link>
               </Menu.Item>
-              <Menu.Item key="queries">
+              <Menu.Item key="queries" style={{ display: currentUser.isGuest() ? "none" : "block" }}>
                 <Link href="queries">{window.W_L.report_list}</Link>
               </Menu.Item>
-              <Menu.Item key="dashboards">
+              <Menu.Item key="dashboards" style={{ display: currentUser.isGuest() ? "none" : "block" }}>
                 <Link href="dashboards">{window.W_L.dashboard}</Link>
               </Menu.Item>
-              <Menu.Item key="dashboards_prettify">
+              <Menu.Item key="dashboards_prettify" style={{ display: currentUser.isGuest() ? "none" : "block" }}>
                 <Link href="dashboards_prettify">{window.W_L.dashboards_prettify}</Link>
               </Menu.Item>
-              <Menu.Item key="autopilot">
+              <Menu.Item key="autopilot" style={{ display: currentUser.isGuest() ? "none" : "block" }}>
                 <Link href="autopilot">{window.W_L.auto_pilot}</Link>
               </Menu.Item>
-              <Menu.Item key="autopilot_list">
+              <Menu.Item key="autopilot_list" style={{ display: currentUser.isGuest() ? "none" : "block" }}>
                 <Link href="autopilot_list">{window.W_L.history_autopilot}</Link>
               </Menu.Item>
+
               {firstSettingsTab && (
                 <Menu.Item key="settings">
                   <Link href={firstSettingsTab.path}>{window.W_L.setting}</Link>
@@ -69,8 +70,7 @@ export default function MobileNavbar({ getPopupContainer }) {
                 {window.W_L.log_out}
               </Menu.Item>
             </Menu>
-          }
-        >
+          }>
           <Button className="mobile-navbar-toggle-button" ghost>
             <MenuOutlinedIcon />
           </Button>

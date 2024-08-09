@@ -30,12 +30,10 @@ export const dialogueStorage = () => {
                 "time": getCurrentTimestamp()
             }]
         }],
-        finance: [{
+        travel: [{
             "table_name": {
                 "tableName": [
-                    { "name": "order_details.csv" },
-                    { "name": "order_list.csv" },
-                    { "name": "sales_target.csv" }
+                    { "name": "travel.csv" },
                 ]
             },
             "Charttable_id": 0,
@@ -45,7 +43,7 @@ export const dialogueStorage = () => {
             "title": "新对话1",
             "uuid": Date.now(),
             "messages": [{
-                "content": "这是一个示例金融数据源，请在下方输入文字进行聊天，用户选择的数据包含三个表格：'order_details.csv'，包含订单详情；'order_list.csv'，包括订单列表；以及'sales_target.csv'，包含销售目标。",
+                "content": "这是一个示例旅游数据源，请在下方输入文字进行聊天，用户选择的数据包含一个表格：'travel.csv'。",
                 "sender": "bot",
                 "Cardloading": false,
                 "time": getCurrentTimestamp()
@@ -64,7 +62,26 @@ export const dialogueStorage = () => {
             "title": "新对话1",
             "uuid": Date.now(),
             "messages": [{
-                "content": "这是一个示例个贷数据源，请在下方输入文字进行聊天，用户选择的数据包含三个表格：'order_details.csv'，包含订单详情；'order_list.csv'，包括订单列表；以及'sales_target.csv'，包含销售目标。",
+                "content": "这是一个示例个贷数据源，请在下方输入文字进行聊天，用户选择的数据包含一个表格：'personal_loans_example.csv',该CSV文件包含1000条贷款记录，包含客户年龄、性别、职业、住房情况、储蓄账户、支票账户、信用金额、贷款期限、贷款用途和贷款风险的详细信息。",
+                "sender": "bot",
+                "Cardloading": false,
+                "time": getCurrentTimestamp()
+            }]
+        }],
+        finance: [{
+            "table_name": {
+                "tableName": [
+                    { "name": "finance_example.csv" }
+                ]
+            },
+            "Charttable_id": 0,
+            "label": "csv数据源",
+            "id": 0,
+            "type": "csv",
+            "title": "新对话1",
+            "uuid": Date.now(),
+            "messages": [{
+                "content": "这是一个示例财务数据源，请在下方输入文字进行聊天，用户选择的数据包含一个表格：'finance_example.csv'。",
                 "sender": "bot",
                 "Cardloading": false,
                 "time": getCurrentTimestamp()

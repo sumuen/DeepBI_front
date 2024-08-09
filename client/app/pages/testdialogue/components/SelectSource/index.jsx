@@ -23,7 +23,7 @@ import { IMG_ROOT } from "@/services/data-source";
 import "./index.less";
 import { T } from "antd/lib/upload/utils";
 import { dialogueStorage } from "../../components/Dialogue/method/dialogueStorage";
-const {setGuestDialogue} = dialogueStorage()
+const { setGuestDialogue } = dialogueStorage();
 const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChange, onSuccess, percent }, ref) => {
   const [options, setOptions] = useState([]);
   const [source_item, setSourceItem] = useState({ type: "mysql" });
@@ -225,9 +225,7 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
     //   ]);
     // }
 
-    const newSelectedRowKeys = table_desc_obj.field_desc
-                                .filter(field => field.in_use === 1)
-                                .map(field => field.name);
+    const newSelectedRowKeys = table_desc_obj.field_desc.filter(field => field.in_use === 1).map(field => field.name);
 
     if (!type) {
       setSelectedRowKeys(newSelectedRowKeys);
@@ -236,7 +234,6 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
       ...prevData,
       { table_name: table_desc_obj.table_name, selectedRowKeys: newSelectedRowKeys },
     ]);
-
 
     setLoadingTableColumns(false);
   };
@@ -377,7 +374,6 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
           { table_name: newSchemaListData.table_name, selectedRowKeys: selectedRowKeys },
         ]);
       }
-
     },
   };
 
@@ -465,142 +461,159 @@ const SelectSource = forwardRef(({ confirmLoading, Charttable, chat_type, onChan
           <h1>您好！</h1>
           <span>
             {chat_type === "chat"
-              ? (currentUser.isGuest() ? window.W_L.guest_chat_start : window.W_L.chat_start)
+              ? currentUser.isGuest()
+                ? window.W_L.guest_chat_start
+                : window.W_L.chat_start
               : chat_type === "autopilot"
               ? window.W_L.AutoPilot_start
               : window.W_L.report_start}
             <Link href="/data_sources">{window.W_L.add_datasource}</Link>
           </span>
-    {currentUser.isGuest() && (
-      <>
-        <Button type="primary" onClick={() => setGuestDialogue('sale')}>销售</Button>
-        <Button type="primary" onClick={() => setGuestDialogue('finance')}>财务</Button>
-        <Button type="primary" onClick={() => setGuestDialogue('loan')}>个贷</Button>
-      </>
-        )}
-        </div>
-        <div className="select-content">
-          <Spin spinning={SelectLoading} className={!submitting ? "" : "dislogue-spin"}>
-            {editData && editData.length > 0 ? (
-              <SecondChoice
-                SelectLoading={SelectLoading}
-                editData={editData}
-                closeEditData={closeEditData}
-                submit={submit}
-                source_item={source_item}></SecondChoice>
-            ) : (
-              <div className="select-content-item">
-                <div style={{ position: "absolute", bottom: "-4.5vh", fontSize: "12px" }}>
-                  <Tooltip title={window.W_L.source_tooltip}>
-                    <InfoCircleOutlinedIcon style={{ marginRight: "3px" }} />
-                  </Tooltip>
-                  {window.W_L.source_first_tooltip}
-                </div>
-                <div style={{ display: "flex", alignItems: "baseline" }}>
-                  <span className="select-content-item-span">
-                    {window.W_L.data_source}
-                    <Tooltip title={window.W_L.source_tooltip} placement="bottom">
-                      <QuestionCircleOutlinedIcon style={{ marginLeft: "1vw" }} />
-                    </Tooltip>
-                  </span>
-                  <div>
-                    <Select
-                      style={{ width: 120 }}
-                      showSearch
-                      defaultValue={source_id}
-                      className="dialogue-content-select"
-                      placeholder={window.W_L.select_data_source}
-                      optionFilterProp="children"
-                      onChange={handleChange}
-                      optionSelectedBg="#eff0f4"
-                      disabled={SelectLoading}
-                      filterOption={filterOption}>
-                      {dataSourceOptions}
-                    </Select>
-                    <div className="select-main">
-                      <ul className={!SchemaListIsShow ? "flex-center" : ""}>
-                        {SchemaListIsShow && (
-                          <div className="flex-end">
-                            <span>{window.W_L.select_all}</span>
-                            <Checkbox
-                              indeterminate={indeterminate}
-                              checked={checkAll}
-                              onChange={e => changeSourceAll(e, "all")}
-                            />
-                          </div>
-                        )}
-                        {SchemaListIsShow ? (
-                          SchemaList.map((item, index) => (
-                            <li key={index}>
-                              <Tooltip title={item.label}>
-                                <span
-                                  onClick={() => clickSchemaItem(item)}
-                                  style={{ color: item.label === SchemaListDataItem.table_name ? "#2196F3" : "#333" }}>
-                                  {item.label}
-                                </span>
-                              </Tooltip>
-                              <Checkbox checked={item.checked} onChange={e => changeSource(e, item)} />
-                            </li>
-                          ))
-                        ) : (
-                          <NoDataHtml />
-                        )}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div className="table-columns">
-                  {tableIsShow && (
-                    <div className="table-columns-item">
-                      <span>
-                        {source_item.type === "csv" ? SchemaListDataItem.table_comment : SchemaListDataItem.table_name}
-                      </span>
-                      <Input
-                        placeholder={window.W_L.sheet_description}
-                        style={{ padding: "2px", maxWidth: "60%" }}
-                        type="text"
-                        disabled={source_item.type === "csv" ? true : false}
-                        value={
-                          source_item.type === "csv" ? SchemaListDataItem.table_name : SchemaListDataItem.table_comment
-                        }
-                        onChange={handleTableDescriptionChange}
-                      />
-                    </div>
-                  )}
-                  <div
-                    className={!tableIsShow ? "flex-center" : ""}
-                    style={{ width: "65vw", overflowY: "scroll", height: tableIsShow ? "27vh" : "30vh" }}>
-                    {tableIsShow ? (
-                      <Table
-                        rowSelection={{
-                          type: "checkbox",
-                          ...rowSelection,
-                        }}
-                        dataSource={SchemaListDataItem.field_desc}
-                        columns={columns}
-                        size="small"
-                        rowKey={record => record.name}
-                        pagination={false}></Table>
-                    ) : (
-                      <NoDataHtml />
-                    )}
-                  </div>
-                </div>
-                {selectSchema && selectSchema.length > 0 && (
-                  <button onClick={submit} disabled={SelectLoading} className="submit-btn">
-                    {window.W_L.submit} {selectSchema.length}
-                  </button>
-                )}
-              </div>
-            )}
-          </Spin>
-          {SelectLoading && submitting && (
-            <div className="dislogue-progress">
-              <Progress width={80} type="circle" percent={percent} />
-              <p>{window.W_L.ai_understanding_data}</p>
-            </div>
+          <br></br>
+          {currentUser.isGuest() && (
+            <>
+              <Button type="primary" onClick={() => setGuestDialogue("sale")}>
+                销售
+              </Button>
+              <Button type="primary" onClick={() => setGuestDialogue("finance")}>
+                财务
+              </Button>
+              <Button type="primary" onClick={() => setGuestDialogue("loan")}>
+                个贷
+              </Button>
+            </>
           )}
         </div>
+        {!currentUser.isGuest() && (
+          <div className="select-content">
+            <Spin spinning={SelectLoading} className={!submitting ? "" : "dislogue-spin"}>
+              {editData && editData.length > 0 ? (
+                <SecondChoice
+                  SelectLoading={SelectLoading}
+                  editData={editData}
+                  closeEditData={closeEditData}
+                  submit={submit}
+                  source_item={source_item}></SecondChoice>
+              ) : (
+                <div className="select-content-item">
+                  <div style={{ position: "absolute", bottom: "-4.5vh", fontSize: "12px" }}>
+                    <Tooltip title={window.W_L.source_tooltip}>
+                      <InfoCircleOutlinedIcon style={{ marginRight: "3px" }} />
+                    </Tooltip>
+                    {window.W_L.source_first_tooltip}
+                  </div>
+                  <div style={{ display: "flex", alignItems: "baseline" }}>
+                    <span className="select-content-item-span">
+                      {window.W_L.data_source}
+                      <Tooltip title={window.W_L.source_tooltip} placement="bottom">
+                        <QuestionCircleOutlinedIcon style={{ marginLeft: "1vw" }} />
+                      </Tooltip>
+                    </span>
+                    <div>
+                      <Select
+                        style={{ width: 120 }}
+                        showSearch
+                        defaultValue={source_id}
+                        className="dialogue-content-select"
+                        placeholder={window.W_L.select_data_source}
+                        optionFilterProp="children"
+                        onChange={handleChange}
+                        optionSelectedBg="#eff0f4"
+                        disabled={SelectLoading}
+                        filterOption={filterOption}>
+                        {dataSourceOptions}
+                      </Select>
+                      <div className="select-main">
+                        <ul className={!SchemaListIsShow ? "flex-center" : ""}>
+                          {SchemaListIsShow && (
+                            <div className="flex-end">
+                              <span>{window.W_L.select_all}</span>
+                              <Checkbox
+                                indeterminate={indeterminate}
+                                checked={checkAll}
+                                onChange={e => changeSourceAll(e, "all")}
+                              />
+                            </div>
+                          )}
+                          {SchemaListIsShow ? (
+                            SchemaList.map((item, index) => (
+                              <li key={index}>
+                                <Tooltip title={item.label}>
+                                  <span
+                                    onClick={() => clickSchemaItem(item)}
+                                    style={{
+                                      color: item.label === SchemaListDataItem.table_name ? "#2196F3" : "#333",
+                                    }}>
+                                    {item.label}
+                                  </span>
+                                </Tooltip>
+                                <Checkbox checked={item.checked} onChange={e => changeSource(e, item)} />
+                              </li>
+                            ))
+                          ) : (
+                            <NoDataHtml />
+                          )}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="table-columns">
+                    {tableIsShow && (
+                      <div className="table-columns-item">
+                        <span>
+                          {source_item.type === "csv"
+                            ? SchemaListDataItem.table_comment
+                            : SchemaListDataItem.table_name}
+                        </span>
+                        <Input
+                          placeholder={window.W_L.sheet_description}
+                          style={{ padding: "2px", maxWidth: "60%" }}
+                          type="text"
+                          disabled={source_item.type === "csv" ? true : false}
+                          value={
+                            source_item.type === "csv"
+                              ? SchemaListDataItem.table_name
+                              : SchemaListDataItem.table_comment
+                          }
+                          onChange={handleTableDescriptionChange}
+                        />
+                      </div>
+                    )}
+                    <div
+                      className={!tableIsShow ? "flex-center" : ""}
+                      style={{ width: "65vw", overflowY: "scroll", height: tableIsShow ? "27vh" : "30vh" }}>
+                      {tableIsShow ? (
+                        <Table
+                          rowSelection={{
+                            type: "checkbox",
+                            ...rowSelection,
+                          }}
+                          dataSource={SchemaListDataItem.field_desc}
+                          columns={columns}
+                          size="small"
+                          rowKey={record => record.name}
+                          pagination={false}></Table>
+                      ) : (
+                        <NoDataHtml />
+                      )}
+                    </div>
+                  </div>
+                  {selectSchema && selectSchema.length > 0 && (
+                    <button onClick={submit} disabled={SelectLoading} className="submit-btn">
+                      {window.W_L.submit} {selectSchema.length}
+                    </button>
+                  )}
+                </div>
+              )}
+            </Spin>
+            {SelectLoading && submitting && (
+              <div className="dislogue-progress">
+                <Progress width={80} type="circle" percent={percent} />
+                <p>{window.W_L.ai_understanding_data}</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     )
   );
