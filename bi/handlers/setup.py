@@ -58,6 +58,7 @@ def initialize_csv_files(user, org):
         'order_list': 'order_list.csv',
         'sales_target': 'sales_target.csv',
         'personal_loans_example': 'personal_loans_example.csv',
+        'finance_example': 'finance_example.csv'
     }
     user_id = user.id
     org_id = org.id

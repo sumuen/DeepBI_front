@@ -78,6 +78,7 @@
   "fonts/roboto/Roboto-Thin-webfont.svg": "fonts/roboto/Roboto-Thin-webfont.svg",
   "fonts/roboto/Roboto-Thin-webfont.ttf": "fonts/roboto/Roboto-Thin-webfont.ttf",
   "fonts/roboto/Roboto-Thin-webfont.woff": "fonts/roboto/Roboto-Thin-webfont.woff",
+  "guestDialogue.json": "guestDialogue.json",
   "images/_/_/_/_/node_modules/bootstrap/fonts/server.less": "images/_/_/_/_/node_modules/bootstrap/fonts/glyphicons-halflings-regular.svg",
   "images/_/_/_/_/node_modules/font-awesome/fonts/main.less": "images/_/_/_/_/node_modules/font-awesome/fonts/fontawesome-webfont.svg",
   "images/_/_/_/_/node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css": "images/_/_/_/_/node_modules/leaflet-fullscreen/dist/fullscreen@2x.png",
